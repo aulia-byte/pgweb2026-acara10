@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Input Rumah Sakit Malang</title>
+</head>
+<body>
+    <h2>Form Input Data Rumah Sakit</h2>
+    
+    <form action="input.php" onsubmit="return validateForm(event)" method="post">
+        <label>Nama Rumah Sakit:</label><br>
+        <input type="text" id="nama" name="nama"><br><br>
+
+        <label>Jenis Rumah Sakit:</label><br>
+        <input type="text" id="jenis" name="jenis" placeholder="Contoh: Rumah Sakit Umum"><br><br>
+
+        <label>Alamat:</label><br>
+        <input type="text" id="alamat" name="alamat"><br><br>
+
+        <label>Kecamatan:</label><br>
+        <input type="text" id="kec" name="kec"><br><br>
+
+        <label>Latitude:</label><br>
+        <input type="text" id="latitude" name="latitude" placeholder="Contoh: -7.9723"><br><br>
+
+        <label>Longitude:</label><br>
+        <input type="text" id="longitude" name="longitude" placeholder="Contoh: 112.6315"><br><br>
+
+        <input type="submit" value="Simpan Data">
+    </form>
+    
+    <p id="informasi" style="color: rgb(170, 0, 255); font-weight: bold;"></p>
+
+    <script>
+    function validateForm(event) {
+        let nama = document.getElementById("nama").value;
+        let jenis = document.getElementById("jenis").value;
+        let alamat = document.getElementById("alamat").value;
+        let kec = document.getElementById("kec").value;
+        let latitude = document.getElementById("latitude").value;
+        let longitude = document.getElementById("longitude").value;
+        let text = "";
+
+        if (nama.trim() === "" || jenis.trim() === "" || alamat.trim() === "" || kec.trim() === "") {
+            text = "Semua bidang teks (Nama, Jenis, Alamat, Kecamatan) wajib diisi!";
+            event.preventDefault();
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+
+        if (isNaN(latitude) || latitude.trim() === "") {
+            text = "Latitude harus berupa angka/desimal (contoh: -7.9723)!";
+            event.preventDefault();
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+
+        if (isNaN(longitude) || longitude.trim() === "") {
+            text = "Longitude harus berupa angka/desimal (contoh: 112.6315)!";
+            event.preventDefault();
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+</body>
+</html>
